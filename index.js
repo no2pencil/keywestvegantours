@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     <p>More to come soon...</p>
   </body>
 </html>
-<!-- Adding comment for push -->
+<!-- Adding new comment for push -->
 `);
 });
 
