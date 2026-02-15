@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
-app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.get('/', (req, res) => {
   res.send(`
@@ -41,7 +40,7 @@ Tina, a PhD in Nutrition, and Phillip, with a degree in Chemistry, combine their
 							</ul>
 						</div>
 						<div class="image">
-							<img src="/images/sugar-apple-health-food.jpg" alt="Sugar Apple Health Food" />
+							<img src="/assets/images/sugar-apple-health-food.jpg" alt="Sugar Apple Health Food" />
 						</div>
 					</section>
 
