@@ -5,9 +5,9 @@ on:
     branches: [master]
   pull_request:
 
+
 jobs:
   scout-scan:
-    name: Docker Scout Scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
