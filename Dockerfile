@@ -15,9 +15,14 @@ USER node
 RUN npm ci --only=production
 
 ## switch back to root for any other system related needs
-## USER root
+USER root
+## Upgrade tar based on vulnerability for  7.5.7
+RUN npm install tar@latest
+## Upgrade minmatch based on vulnerability for 10.2.1
+RUN npm install minimatch@latest
+
 ## switch back to node
-## USER node
+USER node
 
 COPY --chown=node:node . .
 
