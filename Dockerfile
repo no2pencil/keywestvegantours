@@ -1,32 +1,22 @@
-FROM node:20-alpine
+FROM node:24-slim AS builder
 
 WORKDIR /app
 
-## change ownership for app directory
-RUN chown -R node:node /app
+COPY package*.json ./
+RUN npm ci --only production
 
-## maintain node user rights for copied files
-COPY --chown=node:node package*.json ./
+COPY . .
 
-## switch to node user
-USER node
+FROM gcr.io/distroless/nodejs24-debian12
 
-## launch npm as node
-RUN npm ci --only=production
+WORKDIR /app
+COPY --from=builder /app /app
 
-## switch back to root for any other system related needs
-USER root
-## Upgrade tar based on vulnerability for  7.5.7
-RUN npm install tar@latest
-## Upgrade minmatch based on vulnerability for 10.2.1
-RUN npm install minimatch@latest
-
-## switch back to node
-USER node
-
-COPY --chown=node:node . .
+COPY . .
 
 EXPOSE 3000
 
-CMD [ "node", "index.js" ]
+USER nonroot
+
+CMD [ "index.js" ]
 
