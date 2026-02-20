@@ -7,18 +7,19 @@ on:
 
 jobs:
   scout-scan:
+    name: Docker Scout Scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Build Docker image
-      uses: docker build -t kwvt:ci .
+        uses: docker build -t kwvt:ci .
 
       - name: Install Docker Scout
-      run: |
-        curl -sSL https://get.docker.com |  sh
-        docker scout version
+        run: |
+          curl -sSL https://get.docker.com |  sh
+          docker scout version
 
       - name: Scan image with Docker Scout
         run: |
