@@ -15,22 +15,16 @@ jobs:
         run: |
           docker build -t kwvt:${{ github.sha }} -f ./Dockerfile .
 
-      - name: Install Docker Scout
-        run: |
-          curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s -- -b /usr/local/bin
-          docker-scout version
-
-      - name: Scan image with Docker Scout
-        run: |
-          docker-scout cves kwvt:${{ github.sha }} --severity CRITICAL > scout-output.txt || true
-          cat scout-output.txt
-
-      - name: Fail on Critical CVE
-        run: |
-          if grep -q "CRITICAL" scout-output.txt; then
-            echo "Critical CVE found! Failing workflow."
-            exit 1
-          fi
+      - name: Run Docker Scout vulnerability analysis
+        uses: docker/scout-action@v1 # Use the official action
+        with:
+          image: kwvt:${{ github.sha }}
+          command: cves
+          # Fail the action if critical or high severity issues with a fix are found
+          only-fixed: true
+          exit-code: true
+          # Specify severity thresholds
+          only-severity: critical,high
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
