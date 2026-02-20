@@ -1,0 +1,39 @@
+name: Docker Security Scan
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  scout-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      ## Step 1 - checkout repo ## 
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      ## Step 2 - Build Docker image ##
+      - name: Build Docker image
+        uses: docker build -t kwvt:ci .
+
+      ## Step 3 - Install Docker Scout ## 
+      - name: Install Docker Scout
+        run: |
+          curl -sSL https://get.docker.com |  sh
+          docker scout version
+
+      ## Step 4 - Scan image for CVEs ##
+      - name: Scan image with Docker Scout
+        run: |
+          docker scout cves kwvt:ci --severity CRITICAL > scout-output.txt || true
+          cat scout-output.txt
+
+       ## Step 5 - Fail workflow on Critical CVE ##
+       - name: Fail on Critical CVE
+         run: |
+           if grep -q "CRITICAL" scout-output.txt; then
+             echo "Critical CVE found! Failing workflow."
+             exit 1
+           fi 
