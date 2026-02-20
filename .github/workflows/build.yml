@@ -35,13 +35,12 @@ jobs:
           docker scout cves kwvt:${{ github.sha }}  --severity CRITICAL > scout-output.txt || true
           cat scout-output.txt
 
-       - name: Fail on Critical CVE
-         run: |
-           if grep -q "CRITICAL" scout-output.txt; then
-             echo "Critical CVE found! Failing workflow."
-             exit 1
-           fi
-
+      - name: Fail on Critical CVE
+        run: |
+          if grep -q "CRITICAL" scout-output.txt; then
+            echo "Critical CVE found! Failing workflow."
+            exit 1
+          fi
 
       - name: Tag Docker Image
         run: |
