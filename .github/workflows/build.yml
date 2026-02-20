@@ -5,6 +5,32 @@ on:
     branches: [ "master" ]
 
 jobs:
+  scout-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        uses: docker build -t kwvt:ci .
+
+      - name: Install Docker Scout
+        run: |
+          curl -sSL https://get.docker.com |  sh
+          docker scout version
+
+      - name: Scan image with Docker Scout
+        run: |
+          docker scout cves kwvt:ci --severity CRITICAL > scout-output.txt || true
+          cat scout-output.txt
+
+       - name: Fail on Critical CVE
+         run: |
+           if grep -q "CRITICAL" scout-output.txt; then
+             echo "Critical CVE found! Failing workflow."
+             exit 1
+           fi
+
   build:
     runs-on: ubuntu-latest
     steps:
