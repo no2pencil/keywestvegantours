@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 -->
 <html>
 	<head>
-		<title>KeyWest Vegan Tour!</title>
+		<title>KeyWest Vegan Tours!</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="/assets/css/main.css" />
