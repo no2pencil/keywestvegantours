@@ -1,0 +1,25 @@
+name: Gitleaks
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        # Fetch depth 0 is recommended to scan the entire history,
+        # but 2 might be more efficient for PRs, though not guaranteed to work
+        with:
+          fetch-depth: 0 
+      - name: Run Gitleaks action
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ## GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }} # Required for organization accounts
