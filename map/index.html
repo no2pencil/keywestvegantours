@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Key West Vegan & Vegetarian Map</title>
+
+    <!-- Leaflet CSS/CDN -->
+    <!-- <link rel="stylesheet" href="leaflet/leaflet.css"> -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        h2 { text-align: center; margin-top: 20px; }
+        .filter { margin: 10px auto; text-align: center; }
+        #map { height: 600px; width: 90%; max-width: 1200px; margin: 0 auto 40px; border: 1px solid #ccc; }
+
+        /* divIcon styles for vegan/vegetarian markers */
+        .custom-marker div {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+        .custom-marker.vegan div {
+            background-color: #28a745; /* green */
+        }
+        .custom-marker.vegetarian div {
+            background-color: #fd7e14; /* orange */
+        }
+    </style>
+</head>
+<body>
+
+<h2>Key West Vegan & Vegetarian Restaurants</h2>
+
+<div class="filter">
+    <label for="typeFilter">Filter by type:</label>
+    <select id="typeFilter">
+        <option value="">All</option>
+        <option value="vegan">Vegan</option>
+        <option value="vegetarian">Vegetarian</option>
+    </select>
+</div>
+
+<div id="map"></div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Leaflet JS -->
+<script src="leaflet/leaflet.js"></script>
+
+<script>
+    // Initialize map centered on Key West
+    var map = L.map('map').setView([24.5551, -81.7800], 14);
+
+    // Load OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+    }).addTo(map);
+
+    // Store markers globally so we can remove them when filtering
+    var markers = [];
+
+    var markers = [];
+
+    // Create divIcons for vegan and vegetarian
+    var veganIcon = L.divIcon({
+        className: 'custom-marker vegan',
+        html: '<div></div>',
+        iconSize: [20, 20],
+        iconAnchor: [10, 10]
+    });
+
+    var vegetarianIcon = L.divIcon({
+        className: 'custom-marker vegetarian',
+        html: '<div></div>',
+        iconSize: [20, 20],
+        iconAnchor: [10, 10]
+    });
+
+    // Function to load restaurants from backend
+    function loadRestaurants(type = '') {
+        // Remove existing markers
+        markers.forEach(m => map.removeLayer(m));
+        markers = [];
+
+        let url = '/map/restaurants'; // Node.js
+        if (type) url += '?type=' + type;
+
+        $.getJSON(url, function(data) {
+            data.forEach(r => {
+                let icon = (r.type.toLowerCase() === 'vegan') ? veganIcon : vegetarianIcon;
+
+                let marker = L.marker([r.lat, r.lng], { icon: icon }).addTo(map)
+                    .bindPopup(`<b>${r.name}</b><br>${r.address}<br><a href="${r.website}" target="_blank">Website</a>`);
+
+                markers.push(marker);
+            });
+        }).fail(function(err){
+            console.error("Failed to load restaurants:", err);
+        });
+    }
+
+    // Initial load
+    loadRestaurants();
+
+    // Filter dropdown event
+    $('#typeFilter').on('change', function() {
+        loadRestaurants($(this).val());
+    });
+</script>
+
+</body>
+</html>

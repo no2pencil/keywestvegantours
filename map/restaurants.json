@@ -1,0 +1,74 @@
+[
+  {
+    "name": "The Cafe",
+    "lat": 24.5552121,
+    "lng": -81.8017578,
+    "type": "vegetarian",
+    "address": "509 Southard St #6835, Key West, FL 33040",
+    "website": "http://www.thecafekw.com/"
+  },
+  {
+    "name": "Date & Thyme Organic Cafe and Market",
+    "lat": 24.5589467,
+    "lng": -81.7984869,
+    "type": "vegan",
+    "address": "829 Fleming St, Key West, FL 33040",
+    "website": "http://www.dateandthyme.com/"
+  },
+  {
+    "name": "Sugar Apple Organic Cafe & Market",
+    "lat": 24.552342,
+    "lng": -81.79806,
+    "type": "vegan",
+    "address": "917 Simonton St, Key West, FL 33040",
+    "website": "http://sugarapplekeywest.com/"
+  },
+  {
+    "name": "The Koffie House",
+    "lat": 24.5600199,
+    "lng": -81.8035709,
+    "type": "vegetarian",
+    "address": "602 Greene St, Key West, FL 33040",
+    "website": "https://koffiehouse.com/"
+  },
+  {
+    "name": "Banana Cafe",
+    "lat": 24.5488268,
+    "lng": -81.7973792,
+    "type": "vegetarian",
+    "address": "1215 Duval St, Key West, FL 33040",
+    "website": "http://www.bananacafekw.com/"
+  },
+  {
+    "name": "Grain & Berry Cafe",
+    "lat": 24.5645088,
+    "lng": -81.772586,
+    "type": "vegetarian",
+    "address": "2722 N Roosevelt Blvd, Key West, FL 33040",
+    "website": "http://grainandberry.com/"
+  },
+  {
+    "name": "Southernmost Pint Brewpub",
+    "lat": 24.5606359,
+    "lng": -81.8052324,
+    "type": "vegan",
+    "address": "522 Front St, Key West, FL 33040",
+    "website": "https://southernmostpint.net"
+  },
+  {
+    "name": "Blue Heaven",
+    "lat": 24.5516659,
+    "lng": -81.8028146,
+    "type": "vegetarian",
+    "address": "729 Thomas St, Key West, FL 33040",
+    "website": "http://blueheavenkw.com"
+  },
+  {
+    "name": "Kaya Island Eats",
+    "lat": 24.553879,
+    "lng": -81.8014695,
+    "type": "vegetarian",
+    "address": "628 Duval St, Key West, FL 33040",
+    "website": "http://kayakeywest.com"
+  }
+]
