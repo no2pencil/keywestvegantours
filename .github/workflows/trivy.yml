@@ -1,4 +1,4 @@
-- name: Run Trivy scan
+name: Run Trivy scan
   uses: aquasecurity/trivy-action@master
   with:
     image-ref: kwvt:${{ github.sha }}
