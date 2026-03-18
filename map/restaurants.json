@@ -1,5 +1,61 @@
 [
   {
+    "name": "SeaSide Eatery",
+    "lat": 25.0981788,
+    "lng": -80.4373143,
+    "type": "vegan",
+    "address": "99900 Overseas Hwy, Key Largo, FL 33037, USA",
+    "website": "https://seasideeateryflkeys.com/"
+  },
+  {
+    "name": "Sundowners (Key Largo)",
+    "lat": 25.095500,
+    "lng": -80.445000,
+    "type": "vegetarian",
+    "address": "Key Largo, FL 33037, USA",
+    "website": ""
+  },
+  {
+    "name": "Calusa (Baker’s Cay, Key Largo)",
+    "lat": 25.108900,
+    "lng": -80.409000,
+    "type": "vegetarian",
+    "address": "97000 Overseas Hwy, Key Largo, FL 33037, USA",
+    "website": "https://www.plantationonkeyslargo.com/"
+  },
+  {
+    "name": "Meze Morada (Islamorada)",
+    "lat": 24.911800,
+    "lng": -80.655400,
+    "type": "vegetarian",
+    "address": "Islamorada, FL 33036, USA",
+    "website": ""
+  },
+  {
+    "name": "Irie Island Eats",
+    "lat": 24.7140841,
+    "lng": -81.0851822,
+    "type": "vegetarian",
+    "address": "4540 Overseas Hwy, Marathon, FL 33050, USA",
+    "website": "https://www.irieislandeats.com/"
+  },
+  {
+    "name": "Good Food Conspiracy",
+    "lat": 24.669722,
+    "lng": -81.361428,
+    "type": "vegan",
+    "address": "30150 Overseas Hwy, Big Pine Key, FL 33043, USA",
+    "website": "http://www.goodfoodconspiracy.com"
+  },
+  {
+    "name": "Oasis Mediterranean Cuisine",
+    "lat": 24.55564,
+    "lng": -81.79053,
+    "type": "vegetarian",
+    "address": "1019 White St, Key West, FL 33040, USA",
+    "website": "http://oasiskeywest.com"
+  },
+  {
     "name": "The Cafe",
     "lat": 24.5552121,
     "lng": -81.8017578,
