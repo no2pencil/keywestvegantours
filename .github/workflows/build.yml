@@ -35,7 +35,7 @@ jobs:
       - name: Build Docker Image for Trivy
         run: docker build -t kwvt:${{ github.sha }} .
       - name: Run Trivy scan
-        uses: aquasecurity/trivy-action@0.34.0
+        uses: aquasecurity/trivy-action@master
         with:
           image-ref: kwvt:${{ github.sha }}
           format: table
