@@ -35,7 +35,7 @@ jobs:
       - name: Build Docker Image for Trivy
         run: docker build -t kwvt:${{ github.sha }} .
       - name: Run Trivy scan
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.69.3
         with:
           image-ref: kwvt:${{ github.sha }}
           format: table
@@ -56,7 +56,7 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PAT }}
       - name: Run Docker Scout vulnerability analysis
-        uses: docker/scout-action@v1
+        uses: docker/scout-action@v2
         with:
           image: kwvt:${{ github.sha }}
           command: cves
